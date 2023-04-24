@@ -10,8 +10,21 @@ yargs.version('1.1.1');
 yargs.command({
     command: 'add',
     describe:'Add a new note',
-    handler: function(){
-        console.log('Adding a new note!');
+    builder:{
+        title: {
+            describe:'note title',
+            demandOption:true,
+            type:'string'
+        },
+        body: {
+            describe:`it's body`,
+            demandOption:true,
+            type:'string'
+        }
+    },
+    handler: function(argv){
+        console.log('Title:' + argv.title);
+        console.log('Body:' + argv.body);
     }
 })
 // Create remove command
@@ -39,5 +52,4 @@ yargs.command({
     }
 })
 
-console.log(process.argv);
-console.log(yargs.argv);
+yargs.parse();
