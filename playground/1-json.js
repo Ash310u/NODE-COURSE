@@ -9,4 +9,4 @@ parseData.Planet = 'Keplar 22b'
 parseData.Age = 19
 
 const newJsonData = JSON.stringify(parseData)
-const newdata = fs.writeFileSync("1-json.json", newJsonData )
+const newdata = fs.writeFileSync("1-json.json", newJsonData)
