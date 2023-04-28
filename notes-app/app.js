@@ -1,5 +1,5 @@
-// import chalk from 'chalk';
 // import validator from 'validator';
+// import chalk from 'chalk';
 const notes = require('./notes.js')
 const yargs = require('yargs');
 
@@ -30,8 +30,15 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe:'Remove a note',
-    handler: function(){
-        console.log('Removing a note!');
+    builder:{
+        title: {
+            describe:'note title',
+            demandOption:true,
+            type:'string'
+        } 
+    },
+    handler: function(argv){
+        notes.removeNote(argv.title);
     }
 })
 // Create list command
