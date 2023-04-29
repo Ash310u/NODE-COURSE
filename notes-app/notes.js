@@ -1,13 +1,11 @@
 const fs = require('fs');
 
-let getNotes = () => 'your notes...';
-
 const addNote =(title,body) => {
      const notes = loadNotes();
      
-     const duplicateNotes = notes.filter( note => note.title === title);
+     const duplicateNote = notes.find( note => note.title === title);
 
-     if (duplicateNotes.length === 0) {
+     if (!duplicateNote) {
           notes.push({
                title,
                body
@@ -46,6 +44,21 @@ const saveNotes = notes => {
      
 };
 
+const readNote = title => {
+     const notes = loadNotes()
+
+     const note = notes.find( note => note.title === title);
+
+     if (note) {
+          console.log(`Title : ${note.title}`);
+     console.log(`Body : ${note.body}`);
+     }else{
+          console.log(`Unable to find note`);
+     }
+     
+
+}
+
 const loadNotes = ()=> {
      try {
           const dataBuffer = fs.readFileSync('notes.json');
@@ -61,5 +74,6 @@ module.exports = {
      getNotes,
      addNote,
      removeNote,
-     listNotes
+     listNotes,
+     readNote
 };
