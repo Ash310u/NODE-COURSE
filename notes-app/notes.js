@@ -3,8 +3,7 @@ const fs = require('fs');
 const addNote =(title,body) => {
      const notes = loadNotes();
      
-     const duplicateNote = notes.find( note => note.title === title);
-
+     const duplicateNote = notes.find( note => note.title === title); 
      if (!duplicateNote) {
           notes.push({
                title,
