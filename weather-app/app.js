@@ -2,12 +2,12 @@ const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
 geocode("kolkata", (error, data) => {
-    if (data == undefined) {
+    if (error) {
         console.log(error);
     } else {
         const {lat, lon, location} = data
         forecast(lat, lon, location,(error, data) => {
-            if (data == undefined) {
+            if (error) {
                 console.log(error);
             } else {
                 console.log(
