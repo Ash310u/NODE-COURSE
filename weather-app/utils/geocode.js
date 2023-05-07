@@ -3,18 +3,18 @@ const request = require("postman-request");
 const geocode = (address, callback) => {
     const GeocodeURL = `https://us1.locationiq.com/v1/search?key=pk.bbb941e8068fd9d57e6f8705a6c4d8ec&format=json&q=${encodeURIComponent(address)}&limit=1`;
 
-    request({ url: GeocodeURL, json: true }, (error, response) => {
+    request({ url: GeocodeURL, json: true }, (error, {body}) => {
         if (error) {
             callback(`Unble to connect to weather service!`, undefined);
-        } else if (response.body.error) {
+        } else if (body.error) {
             callback(`Unble to find location. Try another search`, undefined);
         } else {
             callback(
                 undefined,
                 {
-                    location: response.body[0].display_name,
-                    lat: response.body[0].lat,
-                    lon: response.body[0].lon
+                    location: body[0].display_name,
+                    lat: body[0].lat,
+                    lon: body[0].lon
                 }
             )
         }
