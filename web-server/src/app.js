@@ -2,11 +2,17 @@ const path = require('path')
 const express = require('express')
 
 const app = express()
-
 const publicDir = path.join(__dirname, '../public')
+
+app.set('view engine', 'hbs')
 app.use(express.static(publicDir))
 
-
+app.get('',(req,res) => {
+    res.render('index', {
+        title:'weather',
+        name:'ash'
+    })
+})
 
 // app.com/weather--->
 app.get('/weather',(req,res) => {
