@@ -39,9 +39,14 @@ app.get('/help', (req, res) => {
 
 // app.com/weather--->
 app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+    return res.send({
+            error: 'You must provide a address!'
+        })
+    }
     res.send({
         forecast: 'rain',
-        location: 'kolkata'
+        address:req.query.address
     });
 })
 app.get('/product', (req, res) => {
