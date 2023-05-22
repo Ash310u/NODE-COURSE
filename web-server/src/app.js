@@ -5,8 +5,8 @@ const app = express()
 
 // Define paths for Express config
 const publicDir = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname,'../templates/views')
-const partialsPath = path.join(__dirname,'../templates/partials')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 // Setup handlebars engine and views location
 app.set('view engine', 'hbs')
@@ -16,51 +16,63 @@ hbs.registerPartials(partialsPath)
 // Setup static directory to serve
 app.use(express.static(publicDir))
 
-app.get('',(req,res) => {
+app.get('', (req, res) => {
     res.render('index', {
-        title:'Weather',
-        name:'ash'
+        title: 'Weather',
+        name: 'ash'
     })
 })
 
-app.get('/about', (req,res) => {
-    res.render('about',{
-        title:'about',
-        name:'ash'
+app.get('/about', (req, res) => {
+    res.render('about', {
+        title: 'about',
+        name: 'ash'
     })
 })
 
-app.get('/help',(req,res) => {
-    res.render('help',{
-        title:'help',
-        name:'ash'
+app.get('/help', (req, res) => {
+    res.render('help', {
+        title: 'help',
+        name: 'ash'
     })
 })
 
 // app.com/weather--->
-app.get('/weather',(req,res) => {
+app.get('/weather', (req, res) => {
     res.send({
-        forecast:'rain',
-        location:'kolkata'
+        forecast: 'rain',
+        location: 'kolkata'
+    });
+})
+app.get('/product', (req, res) => {
+    if (!req.query.search) {
+        // By using return we are stopping the function execution.
+        return res.send({
+            error: 'You must provide a search term'
+        })
+    }
+    // we can also do the same thing using else but using return is a pretty common pattern with Express.
+    res.send({
+        product: [],
     });
 })
 
-app.get('/help/*',(req,res) => {
+app.get('/help/*', (req, res) => {
     res.render('404', {
-        title:404,
-        errorMsg:'Help article not found',
-        name:'ash'
+        title: 404,
+        errorMsg: 'Help article not found',
+        name: 'ash'
     })
 })
 
-app.get('*',(req,res) => {
+app.get('*', (req, res) => {
     res.render('404', {
-        title:404,
-        errorMsg:'Page not found',
-        name:'ash'
+        title: 404,
+        errorMsg: 'Page not found',
+        name: 'ash'
     })
 })
 
-app.listen(3000,() => {
+app.listen(3000, () => {
     console.log('server is up on port 3000.');
 })
