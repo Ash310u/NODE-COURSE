@@ -48,7 +48,7 @@ app.get('/weather', (req, res) => {
             error: 'You must provide a address!'
         })
     }
-
+                    // here we are using Default Function Parameters in next line--->
     geocode(req.query.address, ( error, { lat, lon, location, localtime } = {} ) => {
         if (error) {
             return res.send({ error })
