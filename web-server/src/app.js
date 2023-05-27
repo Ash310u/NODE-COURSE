@@ -53,10 +53,12 @@ app.get('/weather', (req, res) => {
         if (error) {
             return res.send({ error })
         }
+        
         forecast(lat, lon, location, localtime, (error, data) => {
             if (error) {
                 return res.send({ error })
             }
+
             res.send({
                 'current temperature': data.temperature,
                 feelslike: data.feelslike,
@@ -101,4 +103,4 @@ app.get('*', (req, res) => {
 
 app.listen(3000, () => {
     console.log('server is up on port 3000.');
-})
+})  
