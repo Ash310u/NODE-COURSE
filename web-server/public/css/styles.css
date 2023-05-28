@@ -41,3 +41,18 @@ header a {
 .image {
     width: 250px;
 }
+
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    border-radius: 2px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background-color: #888888;
+    color: #fff;
+    padding: 8px;
+    border-radius: 2px;
+}

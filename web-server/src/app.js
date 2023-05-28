@@ -60,13 +60,13 @@ app.get('/weather', (req, res) => {
             }
 
             res.send({
-                'current temperature': data.temperature,
+                temperature: data.temperature,
                 feelslike: data.feelslike,
                 forecast: data.weatherDescriptions[0],
                 location,
                 latitude: lat,
                 longitude: lon,
-                'current time': data.localtime,
+                time: data.localtime,
             });
         });
 
