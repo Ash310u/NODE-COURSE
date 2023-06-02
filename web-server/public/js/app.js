@@ -27,7 +27,7 @@ weatherForm.addEventListener('submit', (e) => {
     latitude.innerHTML = ``;
     longitude.innerHTML = ``;
 
-    fetch(`https://giddy-garb-yak.cyclic.app/?address=${location}`).then((response) => {
+    fetch(`https://giddy-garb-yak.cyclic.app?address=${location}`).then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 msg.innerHTML = data.error;
