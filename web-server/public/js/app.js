@@ -24,7 +24,7 @@ weatherForm.addEventListener('submit', (e) => {
     time.innerHTML = ``;
     latitude.innerHTML = ``;
     longitude.innerHTML = ``;
-    console.log('client side js file is loaded');
+
     fetch(`https://forecast.cyclic.app?address=${location}`).then((response) => {
         response.json().then((data) => {
             if (data.error) {
@@ -41,3 +41,4 @@ weatherForm.addEventListener('submit', (e) => {
         })
     });
 }) 
+console.log('client side js file is loaded');
