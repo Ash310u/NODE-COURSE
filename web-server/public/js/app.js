@@ -1,5 +1,3 @@
-console.log('client side js file is loaded');
-
 // query selector
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
@@ -26,7 +24,7 @@ weatherForm.addEventListener('submit', (e) => {
     time.innerHTML = ``;
     latitude.innerHTML = ``;
     longitude.innerHTML = ``;
-
+    console.log('client side js file is loaded');
     fetch(`https://forecast.cyclic.app?address=${location}`).then((response) => {
         response.json().then((data) => {
             if (data.error) {
