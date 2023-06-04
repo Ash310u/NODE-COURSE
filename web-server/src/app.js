@@ -62,11 +62,10 @@ app.get('/weather', (req, res) => {
             res.send({
                 temperature: data.temperature,
                 feelslike: data.feelslike,
-                forecast: data.weatherDescriptions[0],
+                forecast: data.weatherDescriptions,
                 location,
-                latitude: lat,
-                longitude: lon,
                 time: data.localtime,
+                humidity: data.humidity,
             });
         });
 

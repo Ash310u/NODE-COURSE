@@ -8,8 +8,7 @@ const forecast = document.getElementById('forecast')
 const temperature = document.getElementById('temperature')
 const feelslike = document.getElementById('feelslike')
 const time = document.getElementById('time')
-const latitude = document.getElementById('latitude')
-const longitude = document.getElementById('longitude')
+const humidity = document.getElementById('humidity')
 
 weatherForm.addEventListener('submit', (e) => {
     // it's prevent the browser to be default
@@ -22,21 +21,19 @@ weatherForm.addEventListener('submit', (e) => {
     temperature.innerHTML = ``;
     feelslike.innerHTML = ``;
     time.innerHTML = ``;
-    latitude.innerHTML = ``;
-    longitude.innerHTML = ``;
+    humidity.innerHTML = ``;
 
     fetch(`https://ash-forecast.cyclic.app/weather?address=${location}`).then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 msg.innerHTML = data.error;
             } else {
-                msg.innerHTML = data.location;
-                forecast.innerHTML = data.forecast;
-                temperature.innerHTML = data.temperature;
-                feelslike.innerHTML = data.feelslike;
-                time.innerHTML = data.time;
-                latitude.innerHTML = data.latitude;
-                longitude.innerHTML = data.longitude;
+                msg.innerHTML = `Location : ${data.location}`;
+                forecast.innerHTML = `Forecast : ${data.forecast}`;
+                temperature.innerHTML = `Current temperature : ${data.temperature}`;
+                feelslike.innerHTML = `Feelslike temperature : ${data.feelslike}`;
+                time.innerHTML = `Time : ${data.time}`;
+                humidity.innerHTML = `Humidity : ${data.humidity}`;
             }
         })
     });
