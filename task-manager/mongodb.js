@@ -14,6 +14,8 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     }
     const db = client.db(databaseName);
 
+    // adding a users collection --->
+
     // insertOne it's allow us to insert a single document into a collection --> 
 
     // db.collection('users').insertOne({
@@ -51,6 +53,26 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         console.log(result.ops);
     })
 
+    // adding a tasks collection --->
 
+    db.collection('tasks').insertMany([
+        {
+            description:'Do a commit today',
+            completed:true,
+        },
+        {
+            description:'Hit gym today',
+            completed:false,
+        },
+        {
+            description:'Learn somthing new today',
+            completed:true,
+        }
+    ],(error,result) => {
+        if (error) {
+            return console.log('Unable to insert tasks');
+        }
+        console.log(result.ops);
+    })
 
 })
