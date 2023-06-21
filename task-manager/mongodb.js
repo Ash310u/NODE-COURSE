@@ -11,6 +11,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     }
     const db = client.db(databaseName);
 
+    // R - Read 
     // just finding one document using 'findOne'
     db.collection('users').findOne(
         { _id: new ObjectID('6490b64931d155603859fac3') },
@@ -37,4 +38,21 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         console.log(count);
     })
 
+
+    // using findOne in tasks collection
+    db.collection('tasks').findOne(
+            {_id: new ObjectID('6490b64931d155603859fac6')},
+            (error,task) => {
+                if (error) {
+                    return console.log('Unable to fecth');
+                }
+                console.log(task);
+            }
+        )
+    // using find in tasks collection
+    db.collection('tasks').find(
+            {completed:true}
+        ).toArray((error,tasks) => {
+            console.log(tasks);
+        })
 })
