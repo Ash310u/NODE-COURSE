@@ -16,8 +16,11 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
 
         db.collection('users').updateOne(         
-                {"_id": ObjectID('6490b64931d155603859fac4')}, // Filter
-                {$set:{"name": 'andrew'}} // Update
+                {_id: ObjectID('6490b64931d155603859fac4')}, // Filter
+                {$set:{
+                    name: 'Rick',
+                    age:64
+                }} // Update
             )
             .then((result) => {
                 console.log(result);
