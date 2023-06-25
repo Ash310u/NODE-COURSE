@@ -30,5 +30,24 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         .catch((error) => {
             console.log(error);
         })
-    
+
+
+    // using Update -->
+    // updating all tasks
+    db.collection('tasks').update(
+        {
+            completed: true,
+        },//Filter
+        {
+            $set: {
+                completed: false,
+            }
+        } // Update all
+    )
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 })
