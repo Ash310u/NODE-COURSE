@@ -14,18 +14,21 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
     // U - Update
 
-
-        db.collection('users').updateOne(         
-                {_id: ObjectID('6490b64931d155603859fac4')}, // Filter
-                {$set:{
-                    name: 'Rick',
-                    age:64
-                }} // Update
-            )
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+    // using UpdateOne -->
+    db.collection('users').updateOne(
+        { _id: ObjectID('6490b64931d155603859fac4') }, // Filter
+        {
+            // by using $inc i can increment or decrement any number
+            $inc: {
+                age: 6
+            }
+        } // Update
+    )
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    
 })
