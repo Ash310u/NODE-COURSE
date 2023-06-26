@@ -12,42 +12,23 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     }
     const db = client.db(databaseName);
 
-    // U - Update
+    // D - Delete
 
-    // using UpdateOne -->
-    db.collection('users').updateOne(
-        { _id: ObjectID('6490b64931d155603859fac4') }, // Filter
-        {
-            // by using $inc i can increment or decrement any number
-            $inc: {
-                age: 6
-            }
-        } // Update
-    )
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    // using deleteMany to delete multiple docs
+    db.collection('users').deleteMany({
+        age:22
+    }).then((result) => {
+        console.log(result);
+    }).catch((err) => {
+        console.log(err);
+    });
 
-
-    // using Update -->
-    // updating all tasks
-    db.collection('tasks').update(
-        {
-            completed: true,
-        },//Filter
-        {
-            $set: {
-                completed: false,
-            }
-        } // Update all
-    )
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    // using deleteOne to delete single doc
+    db.collection('tasks').deleteOne({
+        completed:true,
+    }).then((result) => {
+      console.log(result.deletedCount);  
+    }).catch((err) => {
+        console.log(err);
+    });
 })
