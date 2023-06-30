@@ -47,3 +47,24 @@ task.save().then(() => {
 }).catch((err) => {
     console.log(err);
 });
+
+//  finding some bug in mongodb compass
+const People = mongoose.model('People',{
+    description:{
+        type:String
+    },
+    completed:{
+        type:Boolean
+    }
+})
+
+const Person = new People({
+    description:'Do a commit',
+    completed:false
+})
+
+Person.save().then(() => {
+    console.log(Person);
+}).catch((err) => {
+    console.log(err);
+});
