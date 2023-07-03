@@ -10,11 +10,15 @@ mongoose.connect('mongodb://localhost:27017/task-manager-api', {
 const User = mongoose.model('User',{
     name:{
         type: String,
-        required: true 
+        required: true,
+        // by using trim true its remove spaces before and after string
+        trim:true
     },
     email:{
         type:String,
         required:true,
+        trim:true,
+        lowercase:true,
         validate(value){
             if (!validator.isEmail(value)) {
                 throw new Error('Email is invalid')
@@ -23,7 +27,7 @@ const User = mongoose.model('User',{
     },
     age:{
         type: Number,
-        required: true,
+        default:0,
         validate(value) {
             if (value < 0) {
                 throw new Error ('Age must be a positive number')
@@ -33,9 +37,8 @@ const User = mongoose.model('User',{
 })
 
 const me = new User({
-    email:'ass2@gmail.com',
-    name:'Rick',
-    age: 23
+    email:'Rick137@gmail.com',
+    name:'Rick Sanchez', 
 })
 
 me.save().then(() => {
