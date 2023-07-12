@@ -8,18 +8,20 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.post("/users", (req, res) => {
-  const user = new User(req.body);
+    const user = new User(req.body);
 
-  user
-    .save()
-    .then(() => {
-      res.send(user);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
+    user
+        .save()
+        .then(() => {
+            res.send(user);
+        })
+        .catch((err) => {
+            //   res.status(500).send(err);
+            res.status(500)
+            res.send(err)
+        });
 });
 
 app.listen(port, () => {
-  console.log(`server is up on ${port}`);
+    console.log(`server is up on ${port}`);
 });
