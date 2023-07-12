@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require("validator")
 
-
+// In this file we are put the criteria for Users details and exports that
 const User = mongoose.model('User', {
     name: {
         type: String,
